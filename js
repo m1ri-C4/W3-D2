@@ -1,7 +1,7 @@
 const lista = document.querySelector('#lista-task');
 const contatore = document.querySelector('#contatore');
 
-//crea l'array di oggetti 
+//crea l'array di oggetti con le task
 const myTask = [ 
     {
         titoloTask: 'Pagare le bollette',
