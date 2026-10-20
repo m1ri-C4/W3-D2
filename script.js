@@ -26,14 +26,24 @@
 const listaTask = document.querySelector('#lista-task');
 
 function aggiugniTask(p, priorita) {
-  const lista = document.createElement("li"); // creo il nuovo elemento
+
+  const lista = document.createElement("li"); // creo il nuovo elemento <li>
+  const span = document.createElement("span"); // creo il nuovo elemento <span>
+
   if (priorita === 'ALTA') { // gestisco le priorità assegnando le classi CSS corrispondenti
     lista.classList.add("priorita-alta");
+
   } else if (priorita === 'MEDIA') {
     lista.classList.add("priorita-media");
-  } else {
+
+  } else if (priorita === 'BASSA') {
     lista.classList.add("priorita-bassa");
   }
-  lista.innerHTML = `${p} ${priorita} <button> Elimina </button>`
-}
-
+  span.classList.add("badge"); //assegno la classe allo <span>
+  listaTask.appendChild(lista); //aggiungo a <ul> il <li> 
+  lista.appendChild(span); // aggiungo a <li> lo <span>
+  lista.innerHTML = ` 
+  ${p} 
+  ${priorita}
+  <button> Elimina </button>`  //inserisce alla pagina
+};
