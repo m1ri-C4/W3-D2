@@ -69,7 +69,6 @@ aggiugniTask("Studiare JavaScript", "MEDIA");
 aggiugniTask("Comprare il pane", "BASSA");
 aggiugniTask("Chaiamare il dentista", "ALTA");
 aggiugniTask("Riposarsi", "BASSA");
-aggiugniTask("Fare la cacca", "MEDIA");
 
 function aggiornaContatore(){
 const tuttiILi = listaTask.querySelectorAll('li'); // restituisce una collezione di elementi <li> all'intero di #lista-task, con le prorprità di un array 
