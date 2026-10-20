@@ -17,6 +17,7 @@
   1. richiamo #lista-task
   2. creo la funzione aggiungiTask:
   - creo un nuovo elemento <li> per inserire testo e priorità 
+  - creo un nuovo elemento <span>
   - gestisco le priorità e assegno le classi corrispondenti in CSS 
   - aggiungo Date() nel formato italiano 
   - aggiungo un <button> elimina alla fine di ogni riga
@@ -43,7 +44,9 @@ function aggiugniTask(p, priorita) {
   listaTask.appendChild(lista); //aggiungo a <ul> il <li> 
   lista.appendChild(span); // aggiungo a <li> lo <span>
   lista.innerHTML = ` 
-  ${p} 
+  ${p},
   ${priorita}
   <button> Elimina </button>`  //inserisce alla pagina
 };
+
+aggiugniTask("Pagare le bollette", "ALTA");
