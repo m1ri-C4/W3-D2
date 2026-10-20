@@ -15,7 +15,8 @@
 
 /*
   1. richiamo #lista-task
-  2. creo la funzione aggiungiTask:
+  2. creo l'array di oggetti 
+  3. creo la funzione aggiungiTask:
   - creo un nuovo elemento <li> per inserire testo e priorità 
   - creo un nuovo elemento <span>
   - gestisco le priorità e assegno le classi corrispondenti in CSS 
@@ -25,8 +26,11 @@
 */
 
 const listaTask = document.querySelector('#lista-task');
+const contatore = document.querySelector('#contatore');
 
-function aggiugniTask(p, priorita) {
+const myTask = 
+
+function aggiugniTask() {
 
   const lista = document.createElement("li"); // creo il nuovo elemento <li>
   const span = document.createElement("span"); // creo il nuovo elemento <span>
@@ -39,14 +43,14 @@ function aggiugniTask(p, priorita) {
 
   } else if (priorita === 'BASSA') {
     lista.classList.add("priorita-bassa");
-  }
-  span.classList.add("badge"); //assegno la classe allo <span>
-  listaTask.appendChild(lista); //aggiungo a <ul> il <li> 
-  lista.appendChild(span); // aggiungo a <li> lo <span>
+  } 
+  listaTask.appendChild(lista); 
   lista.innerHTML = ` 
   ${p},
   ${priorita}
-  <button> Elimina </button>`  //inserisce alla pagina
+  <button> Elimina </button>`  //aggiungo a <ul> il <li>  //inserisce alla pagina
+  span.classList.add("badge"); //assegno la classe allo <span> 
+  span.textContent = priorita; 
+  lista.appendChild(span); // aggiungo a <li> lo <span>
 };
-
 aggiugniTask("Pagare le bollette", "ALTA");
