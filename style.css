@@ -1,4 +1,9 @@
 /* CSS reset minimo */
+
+*{
+ box-sizing: border-box;
+}
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	max-width: 600px;
@@ -36,6 +41,10 @@ input {
 
 button {
 	padding: 10px 20px;
+  background-color: white;
+  color: #1b2845;
+  border-radius: 8px;
+  border: 1px solid #1b2845;
 	cursor: pointer;
 	font-family: inherit;
 }
