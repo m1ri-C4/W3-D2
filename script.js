@@ -55,14 +55,6 @@ function aggiugniTask(p) { //funzione della lista
   listaTask.appendChild(lista); //inserisci il <li> completo nell'HTML
 };
 
-listaTask.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (e.target.type === 'button') {
-    const elemento = e.target.parentElement;
-    elemento.remove();
-  }
-});
-
 // richiamo la funzione con gli argomenti 
 aggiugniTask("Pagare la bolletta");
 aggiugniTask("Studiare JavaScript");
@@ -70,9 +62,25 @@ aggiugniTask("Comprare il pane");
 aggiugniTask("Chaiamare il dentista");
 aggiugniTask("Riposarsi");
 
+listaTask.addEventListener('click', (e) => {
+  if (e.target.type === 'button') {
+    const elemento = e.target.parentElement;
+    elemento.remove();
+    aggiornaContatore();
+  }
+});
+
+listaTask.addEventListener('change', (e) => {
+  if (e.target.type === 'checkbox') {
+    const spanTesto = e.target.nextElementSibling;
+    spanTesto.classList.toggle("checkbox", e.target.checked);
+    aggiornaContatore();
+  }
+});
+
 function aggiornaContatore() {
   const tuttiILi = listaTask.querySelectorAll('li'); // restituisce una collezione di elementi <li> all'intero di #lista-task, con le prorprità di un array 
   contatore.textContent = tuttiILi.length; //mostra nella pagina il numero di <li> grazie a .length
 };
-
 aggiornaContatore();
+

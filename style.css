@@ -58,3 +58,8 @@ button {
 #lista-task {
   list-style-type: none;
 }
+
+.checkbox{
+  text-decoration: line-through;
+  color:gray;
+}
