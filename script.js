@@ -24,8 +24,19 @@
 
 const listaTask = document.querySelector('#lista-task');
 const contatore = document.querySelector('#contatore');
+const bottoneAggiungi = document.querySelector('#bottone-aggiungi');
+const newTask = document.querySelector("#nuovo-task");
 
-function aggiugniTask(p) {
+const tasks = [];
+
+bottoneAggiungi.addEventListener('click', (e) => { // crea la funzione aggiungi
+	e.preventDefault();
+	let task = newTask.value;
+	tasks.push(task);
+	aggiugniTask(task);
+});
+
+function aggiugniTask(p) { //funzione della lista
 
   const lista = document.createElement("li"); // creo il nuovo elemento <li>
   lista.textContent = p; //insertisce il titolo dell'attività
@@ -45,9 +56,9 @@ aggiugniTask("Comprare il pane");
 aggiugniTask("Chaiamare il dentista");
 aggiugniTask("Riposarsi");
 
-function aggiornaContatore(){
-const tuttiILi = listaTask.querySelectorAll('li'); // restituisce una collezione di elementi <li> all'intero di #lista-task, con le prorprità di un array 
-contatore.textContent = tuttiILi.length; //mostra nella pagina il numero di <li> grazie a .length
+function aggiornaContatore() {
+  const tuttiILi = listaTask.querySelectorAll('li'); // restituisce una collezione di elementi <li> all'intero di #lista-task, con le prorprità di un array 
+  contatore.textContent = tuttiILi.length; //mostra nella pagina il numero di <li> grazie a .length
 };
 
 aggiornaContatore();
