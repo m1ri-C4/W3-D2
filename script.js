@@ -5,23 +5,6 @@
   - Solo const/let, mai var. Solo querySelector/querySelectorAll per il DOM.
 */
 
-/* SCRIVI QUI LE TUE FUNZIONI:
-   1. Modifica aggiungiTask per accettare priorita
-   2. Aggiungi bottone Elimina su ogni task
-   6. evidenzia(indice) / togliEvidenza(indice)
-   7. data automatica nel task
-   8. contaPerPriorita()
-*/
-
-/*
-  1. richiamo #lista-task
-  2. richiamo #contatore 
-  3. creo la funzione aggiungiTask:
-  - creo un nuovo elemento <li> per inserire testo
-  - aggiungo un <button> elimina alla fine di ogni riga
-  - creo il contatore che si aggiorna 
-*/
-
 const listaTask = document.querySelector('#lista-task');
 const contatore = document.querySelector('#contatore');
 const bottoneAggiungi = document.querySelector('#bottone-aggiungi');
@@ -42,21 +25,39 @@ bottoneAggiungi.addEventListener('click', (e) => { // crea la funzione aggiungi
   aggiornaContatore();
 });
 
-function controlliBottoni(){
-  const tutteTask = document.querySelectorAll('li'); 
+attiviBtn.addEventListener("click", () => {
+  const tutteTask = document.querySelectorAll('li');
 
-  tutteTask.forEach((task) =>{
-    const checkbox = task.querySelector('input["checkbox"]');
+  tutteTask.forEach((task) => {
+    const checkbox = task.querySelector('input[type="checkbox"]');
 
     if (!checkbox.checked) {
       task.classList.remove("nascosto");
     } else {
       task.classList.add("nascosto");
     }
-  })
-  }
+  });
+});
 
+tuttiBtn.addEventListener("click", () => {
+  const tutteTask = document.querySelectorAll('li');
+  tutteTask.forEach((task) => {
+    task.classList.remove("nascosto");
+  });
+});
 
+completatiBtn.addEventListener("click", () => {
+  const tutteTask = document.querySelectorAll('li');
+
+  tutteTask.forEach((task) => {
+    const checkbox = task.querySelector('input[type="checkbox"]');
+    if (checkbox.checked) {
+      task.classList.remove("nascosto");
+    } else {
+      task.classList.add("nascosto");
+    }
+  });
+});
 
 function aggiugniTask(p) { //funzione della lista
   const lista = document.createElement("li"); // creo il nuovo elemento <li>
@@ -70,7 +71,7 @@ function aggiugniTask(p) { //funzione della lista
 
   const bottone = document.createElement("button"); // creo l'elemento bottone
   bottone.setAttribute("type", "button");
-  bottone.classList.add("button"); // assegno al bottone le sue classi
+  bottone.classList.add("button", "liButton"); // assegno al bottone le sue classi
   bottone.textContent = 'Elimina'; //scrive 'Elimina' dentro al bottone 
   lista.appendChild(bottone); // inserisco il <button> bottone dentro <sapn> date, affinchè il bottone sia dopo la data
 
