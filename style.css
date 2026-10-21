@@ -63,3 +63,7 @@ button {
   text-decoration: line-through;
   color:gray;
 }
+
+.nascosto{
+	display: none;
+}

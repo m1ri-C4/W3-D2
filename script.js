@@ -26,6 +26,11 @@ const listaTask = document.querySelector('#lista-task');
 const contatore = document.querySelector('#contatore');
 const bottoneAggiungi = document.querySelector('#bottone-aggiungi');
 const newTask = document.querySelector("#nuovo-task");
+const controlli = document.querySelector(".controlli");
+const tuttiBtn = document.querySelector("#tutti");
+const attiviBtn = document.querySelector("#attivi");
+const completatiBtn = document.querySelector("#completati");
+
 
 const tasks = [];
 
@@ -34,7 +39,24 @@ bottoneAggiungi.addEventListener('click', (e) => { // crea la funzione aggiungi
   let task = newTask.value;
   tasks.push(task);
   aggiugniTask(task);
+  aggiornaContatore();
 });
+
+function controlliBottoni(){
+  const tutteTask = document.querySelectorAll('li'); 
+
+  tutteTask.forEach((task) =>{
+    const checkbox = task.querySelector('input["checkbox"]');
+
+    if (!checkbox.checked) {
+      task.classList.remove("nascosto");
+    } else {
+      task.classList.add("nascosto");
+    }
+  })
+  }
+
+
 
 function aggiugniTask(p) { //funzione della lista
   const lista = document.createElement("li"); // creo il nuovo elemento <li>
@@ -79,8 +101,14 @@ listaTask.addEventListener('change', (e) => {
 });
 
 function aggiornaContatore() {
-  const tuttiILi = listaTask.querySelectorAll('li'); // restituisce una collezione di elementi <li> all'intero di #lista-task, con le prorprità di un array 
-  contatore.textContent = tuttiILi.length; //mostra nella pagina il numero di <li> grazie a .length
+  const tutteCheckbox = listaTask.querySelectorAll('input[type="checkbox"]')// restituisce una collezione di elementi <li> all'intero di #lista - task, con le prorprità di un array 
+  let attivi = 0;
+  tutteCheckbox.forEach((checkbox) => {
+    if (!checkbox.checked) {
+      attivi++;
+    }
+  })
+  contatore.textContent = attivi;
 };
 aggiornaContatore();
 
