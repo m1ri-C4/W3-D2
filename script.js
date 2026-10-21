@@ -27,6 +27,14 @@ bottoneAggiungi.addEventListener('click', (e) => {
   aggiornaContatore(); //aggiorna il numero delle attività attive
 });
 
+//aggiungi attività con il tasto enter
+newTask.addEventListener("keydown", (e) => {
+  if (e.key === 'Enter') { // controlla se il tasto premuto è enter
+    e.preventDefault();
+    bottoneAggiungi.click();
+  }
+});
+
 //filtro attivi
 attiviBtn.addEventListener("click", () => {
   const tutteTask = document.querySelectorAll('li'); //recupera tutti i li 
@@ -125,5 +133,5 @@ function aggiornaContatore() {
   })
   contatore.textContent = attivi; //mostra nella pagina il totale attivi
 };
-aggiornaContatore(); 
+aggiornaContatore();
 
