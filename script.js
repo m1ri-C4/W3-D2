@@ -15,65 +15,72 @@ const attiviBtn = document.querySelector("#attivi");
 const completatiBtn = document.querySelector("#completati");
 
 
-const tasks = [];
+const tasks = []; // creo un array per salvare il testo delle nuove attività
 
-bottoneAggiungi.addEventListener('click', (e) => { // crea la funzione aggiungi
-  e.preventDefault();
-  let task = newTask.value;
-  tasks.push(task);
-  aggiugniTask(task);
-  aggiornaContatore();
+//aggiungere una nuova attività
+bottoneAggiungi.addEventListener('click', (e) => {
+  e.preventDefault(); //evita il comportamento predefinito del pulsante 
+
+  let task = newTask.value; // creo una variabile che recupera il testo scritto nell'input
+  tasks.push(task); //aggiungo il testo all'array tasks
+  aggiugniTask(task); //creo e mostro la nuova attività nella lista
+  aggiornaContatore(); //aggiorna il numero delle attività attive
 });
 
+//filtro attivi
 attiviBtn.addEventListener("click", () => {
-  const tutteTask = document.querySelectorAll('li');
+  const tutteTask = document.querySelectorAll('li'); //recupera tutti i li 
 
-  tutteTask.forEach((task) => {
-    const checkbox = task.querySelector('input[type="checkbox"]');
+  tutteTask.forEach((task) => { //controlla ogni attività della lista
+    const checkbox = task.querySelector('input[type="checkbox"]'); //trova la checkbox del singolo li
 
-    if (!checkbox.checked) {
-      task.classList.remove("nascosto");
+    if (!checkbox.checked) { // se la checkbox non è selezionata 
+      task.classList.remove("nascosto"); //mostra l'attività attiva
     } else {
-      task.classList.add("nascosto");
+      task.classList.add("nascosto");//nascondi l'attività completata
     }
   });
 });
 
+//filtro tutti
 tuttiBtn.addEventListener("click", () => {
   const tutteTask = document.querySelectorAll('li');
   tutteTask.forEach((task) => {
-    task.classList.remove("nascosto");
+    task.classList.remove("nascosto");//mostra tutte le attività
   });
 });
 
+//filtro completati
 completatiBtn.addEventListener("click", () => {
   const tutteTask = document.querySelectorAll('li');
 
   tutteTask.forEach((task) => {
     const checkbox = task.querySelector('input[type="checkbox"]');
-    if (checkbox.checked) {
-      task.classList.remove("nascosto");
+    if (checkbox.checked) { //se la checkbox è selezionata 
+      task.classList.remove("nascosto");//mostra l'attività completata
     } else {
-      task.classList.add("nascosto");
+      task.classList.add("nascosto");//nasconde l'attività attiva
     }
   });
 });
 
-function aggiugniTask(p) { //funzione della lista
-  const lista = document.createElement("li"); // creo il nuovo elemento <li>
-  const checkbox = document.createElement("input");
-  checkbox.setAttribute("type", "checkbox");
-  lista.appendChild(checkbox);
+//funzione per creare una nuova attività
+function aggiugniTask(p) {
+  const lista = document.createElement("li"); // creo <li>
 
-  const spanTesto = document.createElement("span");
-  spanTesto.textContent = p; //insertisce il titolo dell'attività
-  lista.appendChild(spanTesto);
+  const checkbox = document.createElement("input"); //creo <input>
+  checkbox.setAttribute("type", "checkbox");//imposta l'input come checkbox
+  lista.appendChild(checkbox);//inserisci la ceckbox nel <li>
 
-  const bottone = document.createElement("button"); // creo l'elemento bottone
-  bottone.setAttribute("type", "button");
-  bottone.classList.add("button", "liButton"); // assegno al bottone le sue classi
+  const spanTesto = document.createElement("span");//creo <span>
+  spanTesto.textContent = p; //inserisce nello span il testo ricevuto dalla funzione
+  lista.appendChild(spanTesto); //inserisci lo span nel <li>
+
+  const bottone = document.createElement("button"); // creo <button>
+  bottone.setAttribute("type", "button");//imposta il tipo button
+  bottone.classList.add("elimina"); // assegno al bottone la classe
   bottone.textContent = 'Elimina'; //scrive 'Elimina' dentro al bottone 
-  lista.appendChild(bottone); // inserisco il <button> bottone dentro <sapn> date, affinchè il bottone sia dopo la data
+  lista.appendChild(bottone); //inserisci il <button> nel <li>
 
   listaTask.appendChild(lista); //inserisci il <li> completo nell'HTML
 };
@@ -82,34 +89,41 @@ function aggiugniTask(p) { //funzione della lista
 aggiugniTask("Pagare la bolletta");
 aggiugniTask("Studiare JavaScript");
 aggiugniTask("Comprare il pane");
-aggiugniTask("Chaiamare il dentista");
+aggiugniTask("Chiamare il dentista");
 aggiugniTask("Riposarsi");
 
+//eliminare un attività
 listaTask.addEventListener('click', (e) => {
+  //controlla se l'elemento cliccato è un pulsante
   if (e.target.type === 'button') {
-    const elemento = e.target.parentElement;
-    elemento.remove();
-    aggiornaContatore();
+    const elemento = e.target.parentElement; //recupera il li che contiene il pulsante 
+    elemento.remove(); //elimina il li dalla pagina
+    aggiornaContatore(); //aggiorna il numero delle attvità attive
   }
 });
 
+//completamento di un attività
 listaTask.addEventListener('change', (e) => {
+  //controlla se l'elemento cliccato è un pulsante
   if (e.target.type === 'checkbox') {
-    const spanTesto = e.target.nextElementSibling;
+    const spanTesto = e.target.nextElementSibling; //recupera lo span dopo la checkbox
+    //aggiunge la classe checkbox se selezionata, la rimuove se deselezionata 
     spanTesto.classList.toggle("checkbox", e.target.checked);
     aggiornaContatore();
   }
 });
 
+//funzione per aggiornare il contatore 
 function aggiornaContatore() {
-  const tutteCheckbox = listaTask.querySelectorAll('input[type="checkbox"]')// restituisce una collezione di elementi <li> all'intero di #lista - task, con le prorprità di un array 
-  let attivi = 0;
-  tutteCheckbox.forEach((checkbox) => {
-    if (!checkbox.checked) {
-      attivi++;
+  //recupera tutte le checkbox presenti nella lista
+  const tutteCheckbox = listaTask.querySelectorAll('input[type="checkbox"]')
+  let attivi = 0; // contatore iniziale delle attività non complete
+  tutteCheckbox.forEach((checkbox) => { //controllas ogni checkbox
+    if (!checkbox.checked) { //se la ceckbox non è selezionata
+      attivi++; //aumenta di uno il valore delle atitività attive
     }
   })
-  contatore.textContent = attivi;
+  contatore.textContent = attivi; //mostra nella pagina il totale attivi
 };
-aggiornaContatore();
+aggiornaContatore(); 
 

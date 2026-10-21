@@ -39,26 +39,59 @@ input {
 	font-family: inherit;
 }
 
-button {
-	padding: 10px 20px;
-	margin: 10px 0 0 2px;
-	background-color: white;
-	color: #1b2845;
-	border-radius: 8px;
-	border: 1px solid #1b2845;
-	cursor: pointer;
-	font-family: inherit;
+ul {
+	list-style: none;
+	padding: 0;
 }
 
-li button{
-	margin-left: 50px;
+li {
+	gap: 12px;
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
 }
-/* Notifica nascosta di default */
+
+li.completato .testo {
+	text-decoration: line-through;
+	color: #65697a;
+}
+
+li .testo {
+	flex: 1;
+}
+
+button {
+	padding: 10px 20px;
+	cursor: pointer;
+	font-family: inherit;
+	border: 1px solid #1b2845;
+	background: #ffffff;
+	color: #1b2845;
+	border-radius: 6px;
+}
+
+button:hover {
+	background: #1b2845;
+	color: #ffffff;
+}
+
+li button.elimina {
+	padding: 4px 12px;
+	font-size: 13px;
+	border-color: #c23b3b;
+	color: #c23b3b;
+	background: #ffffff;
+	float: right;
+}
+
+li button.elimina:hover {
+	background: #c23b3b;
+	color: #ffffff;
+}
+
 #notifica {
 	display: none;
 }
 
-/* Scrivi qui sotto i tuoi stili */
 #lista-task {
 	list-style-type: none;
 }
