@@ -55,3 +55,6 @@ button {
 }
 
 /* Scrivi qui sotto i tuoi stili */
+#lista-task {
+  list-style-type: none;
+}
