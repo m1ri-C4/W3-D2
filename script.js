@@ -42,12 +42,12 @@ function aggiugniTask(p) { //funzione della lista
   checkbox.setAttribute("type", "checkbox");
   lista.appendChild(checkbox);
 
-
   const spanTesto = document.createElement("span");
   spanTesto.textContent = p; //insertisce il titolo dell'attività
   lista.appendChild(spanTesto);
 
   const bottone = document.createElement("button"); // creo l'elemento bottone
+  bottone.setAttribute("type", "button");
   bottone.classList.add("button"); // assegno al bottone le sue classi
   bottone.textContent = 'Elimina'; //scrive 'Elimina' dentro al bottone 
   lista.appendChild(bottone); // inserisco il <button> bottone dentro <sapn> date, affinchè il bottone sia dopo la data
@@ -55,14 +55,13 @@ function aggiugniTask(p) { //funzione della lista
   listaTask.appendChild(lista); //inserisci il <li> completo nell'HTML
 };
 
-/*listaTask.addEventListener('click', (e) => {
+listaTask.addEventListener('click', (e) => {
   e.preventDefault();
   if (e.target.type === 'button') {
-    //console.log(`Hai cliccato il button con id ${e.target.id}`);
-    tasks.splice(e.target.id - 1, 1);
-    aggiugniTask();
+    const elemento = e.target.parentElement;
+    elemento.remove();
   }
-});*/
+});
 
 // richiamo la funzione con gli argomenti 
 aggiugniTask("Pagare la bolletta");
